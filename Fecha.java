@@ -1,4 +1,6 @@
-package TrabajoFinal;
+package com.trabajofinal;
+
+import java.util.Date;
 
 /**
  * Created by francomoglia on 11/15/16.
@@ -12,49 +14,23 @@ public class Fecha {
     private int hora;
     private int minutos;
 
-    public int getDia() {
-        return dia;
-    }
 
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-
-    public int getMes() {
-        return mes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
-
-    public int getHora() {
-        return hora;
-    }
-
-    public void setHora(int hora) {
-        this.hora = hora;
-    }
-
-    public int getMinutos() {
-        return minutos;
-    }
-
-    public void setMinutos(int minutos) {
-        this.minutos = minutos;
-    }
-
+    /**
+     * Constructor de la clase Fecha
+     * @param dia
+     * @param mes
+     * @param anio
+     * @param hora
+     * @param minutos
+     */
     public Fecha(int dia, int mes, int anio, int hora, int minutos){
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+        this.hora = hora;
+        this.minutos = minutos;
 
-        if (dia > 0 && dia < 31) {
+        /*if (dia > 0 && dia < 31) {
             this.dia = dia;
         }else {
             throw new IllegalArgumentException("Dia Invalido");
@@ -82,17 +58,42 @@ public class Fecha {
             this.minutos = minutos;
         }else {
             throw new IllegalArgumentException("Minutos Invalidos");
-        }
+        }*/
+    }
+
+    public Fecha(int dia, int mes, int anio){
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+        this.hora = 0;
+        this.minutos = 0;
+
     }
 
     @Override
     public String toString() {
-
-        if (minutos > 0 && minutos < 10) {
-            return "Fecha: " + dia + "/" + mes + "/" + anio + "\n" +
-                    "Hora: " + hora + ":0" + minutos;
-        } else return "Fecha: " + dia + "/" + mes + "/" + anio + "\n" +
-                "Hora: " + hora + ":" + minutos;
+        StringBuilder sb = new StringBuilder();
+        if (this.dia < 10){
+            sb.append("0"+this.dia);
+        } else {
+            sb.append(this.dia);
+        }
+        if (this.mes < 10){
+            sb.append("/0"+this.mes);
+        } else {
+            sb.append("/"+this.mes);
+        }
+        if (this.hora < 10){
+            sb.append("/"+this.anio+" 0"+this.hora);
+        } else {
+            sb.append("/"+this.anio+" "+this.hora);
+        }
+        if (this.minutos < 10){
+            sb.append(":0"+this.hora);
+        } else {
+            sb.append(":"+this.hora);
+        }
+        return sb.toString();
     }
 }
 
